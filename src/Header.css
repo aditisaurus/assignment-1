@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 0;
+   background-color: white;
+   border-bottom: 1px solid lightgrey;
+   padding-top: 10px;
+   padding-bottom: 10px;
+   width: 100%;
+   z-index: 999;
+}
+
+.blue-button {
+    display: flex;
+    flex-direction: row;
+    color:blue;
+    margin-right: 10px;
+    align-items: center;
+    padding: 10px;
+}
+
+.red-button {
+    color: red;
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    align-items: center;
+    padding: 10px;
+}
