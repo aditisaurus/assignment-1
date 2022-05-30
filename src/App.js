@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Header from './Header';
+import Product from './Product';
+
 
 function App() {
   return (
@@ -8,6 +10,9 @@ function App() {
 
       {/*Header*/}
         <Header />
+
+        {/*Products*/}
+        <Product />
 
     </div>
   );
