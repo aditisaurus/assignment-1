@@ -3,7 +3,8 @@
 }
 
 .add-to-cart-button {
-    position: sticky;
-    display: flex;
-    align-items: flex-end;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 50%;
 }

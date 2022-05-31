@@ -1,6 +1,9 @@
 .product-item {
     display: flex;
-    flex-wrap: wrap;
-    width: 50%;
+    flex-wrap: row wrap;
+    align-items: row;
+}
 
+.product-name {
+    width: 100%;
 }
