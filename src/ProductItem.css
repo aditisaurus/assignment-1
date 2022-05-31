@@ -1,9 +1,0 @@
-.product-item {
-    display: flex;
-    flex-wrap: row wrap;
-    align-items: row;
-}
-
-.product-name {
-    width: 100%;
-}

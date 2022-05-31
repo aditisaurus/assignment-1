@@ -1,16 +1,15 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
-import ProductItem from './ProductItem';
+
 import './Product.css';
 import Button from 'react-bootstrap/Button';
 import  InputGroup  from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
-  const Products = () => {
-    const products = useSelector((state)=> state.products);
-  
+  function Products () {
+
 
   return (
     <div className="products">
@@ -25,15 +24,20 @@ import FormControl from 'react-bootstrap/FormControl';
     </Button></InputGroup>
 
     <div className="product-list">
-      {products.map((product) => (<ProductItem id={product.id} title={product.title} completed={product.completed} />))}
-   
+      <InputGroup.Checkbox className="checkBox" aria-label=" " />
+  
+      <ListGroup className="product-name">
+      </ListGroup>
     </div>
+
     <div className="add-to-cart-button">
     <div className="d-grid gap-2">
   <Button variant="primary" >
     Add to Cart
   </Button>
   </div>
+
+
     </div>
     
     
