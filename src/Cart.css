@@ -1,13 +1,23 @@
 .cart {
     margin-right: 0px;
     width: 100%;
-    
-    
+      
 }
+
+.add-item {
+    width: 50%;
+}
+
+.remove-item {
+    width: 50%;
+}
+
+
 .checkout-button {
     position: fixed;
     right: 0;
     bottom: 0;
     width: 50%;
 }
+
  

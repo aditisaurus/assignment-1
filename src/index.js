@@ -3,6 +3,11 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import { makeServer } from "./Server"
+
+if (process.env.NODE_ENV === "development") {
+  makeServer({ environment: "development" })
+}
 
 const container = document.getElementById('root');
 const root = createRoot(container);

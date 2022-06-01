@@ -1,20 +1,45 @@
-import React from 'react'
-
+import {React, useState} from 'react'
 import './Product.css';
-import Button from 'react-bootstrap/Button';
-import  InputGroup  from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import ListGroup from 'react-bootstrap/ListGroup';
+import {Button,InputGroup,FormControl, ListGroup}from 'react-bootstrap';
 
 
+function Products ({products}) {
+const [filteredData, setFilteredData] = useState(products);
 
-  function Products () {
+  const handleSearch = (event) =>{
+    const  name = event.target.value;
+    const newFilter = products.filter((value) => {
+          return value.name.toLowerCase().includes(name.toLowerCase())
+    });
+
+    if(name === "") {
+      setFilteredData(products);
+    }
+    else {
+      setFilteredData(newFilter);
+    }
+    
+  }
+
+const [cartItems, setCartItems] = useState([]);
+const onAdd= (product) => {
+  const exist = cartItems.find((x) => x.id === product.id);
+  if (exist) {
+    setCartItems(
+      cartItems.map((x)=>
+      x.id === product.id ? { ...exist, qty: exist.qty+1 } : x)
+    );
+  }
+  else {
+    setCartItems([...cartItems, {...product, qty: 1}]);
+  }
+};
 
 
   return (
     <div className="products">
       <InputGroup className="search-input">
-    <FormControl
+    <FormControl onChange={(event) =>handleSearch(event)}
       placeholder="Enter product name here"
       aria-label="Recipient's username"
       aria-describedby="basic-addon2"
@@ -24,15 +49,21 @@ import ListGroup from 'react-bootstrap/ListGroup';
     </Button></InputGroup>
 
     <div className="product-list">
-      <InputGroup.Checkbox className="checkBox" aria-label=" " />
+    {filteredData.map((product) => (
+      <>
+      <InputGroup.Checkbox className="checkbox" aria-label= {product.completed}/>
+       <ListGroup>
+           <ListGroup.Item key={product.id}>{product.name}</ListGroup.Item>
+        </ListGroup>
   
-      <ListGroup className="product-name">
-      </ListGroup>
+      
+      </>
+))}
     </div>
 
     <div className="add-to-cart-button">
     <div className="d-grid gap-2">
-  <Button variant="primary" >
+  <Button variant="primary" onClick="onAdd">
     Add to Cart
   </Button>
   </div>
