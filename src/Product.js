@@ -3,8 +3,7 @@ import './Product.css';
 import {Button,InputGroup,FormControl, ListGroup}from 'react-bootstrap';
 
 
-function Products ({products}) {
-const [filteredData, setFilteredData] = useState(products);
+function Products ({products,setProducts}) {
 
   const handleSearch = (event) =>{
     const  name = event.target.value;
@@ -13,13 +12,16 @@ const [filteredData, setFilteredData] = useState(products);
     });
 
     if(name === "") {
-      setFilteredData(products);
+      setProducts(products);
     }
     else {
-      setFilteredData(newFilter);
+      setProducts(newFilter);
     }
     
   }
+
+  const {theme} = useContext(ThemeContext);
+
 
 const [cartItems, setCartItems] = useState([]);
 const onAdd= (product) => {
@@ -49,7 +51,7 @@ const onAdd= (product) => {
     </Button></InputGroup>
 
     <div className="product-list">
-    {filteredData.map((product) => (
+    {products.map((product) => (
       <>
       <InputGroup.Checkbox className="checkbox" aria-label= {product.completed}/>
        <ListGroup>

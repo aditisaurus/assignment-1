@@ -1,48 +1,29 @@
-import React , { useState, useEffect }  from 'react';
+import React , { useState, useEffect, useContext }  from 'react';
 import './App.css';
-import {makeServer} from './Server';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './Header';
-import Product from './Product';
-import Cart from './Cart.js';
-import {Row,Col} from 'react-bootstrap';
+import Layout from './Layout';
+
+
+const themes={
+  red: {
+    variant: 'outline-danger',
+    name: 'Red'
+  },
+  blue: {
+    variant: 'outline-primary', 
+    name: 'Blue'
+  }
+};
+const [theme, setTheme] = useState(themes.blue);
+
 
 
 function App() {
 
-  const [products, setProducts] = useState([]);
-
-
-  useEffect(() => {
-    fetch("/api/products")
-      .then((res) => res.json())
-      .then((json) => {
-        setProducts(json.products)
-      })
-  }, [])
-
-
   return (
-    <div className="app">
-
-      {/*Header*/}
-        <Header />
-
-    <div >
-       <Row>
-          <Col md={6}>
-          
-        <Product products={products}/>
-    
-              
-          </Col>  
-          <Col md={6}>  
-              <Cart />
-          </Col>  
-       </Row>
-    </div>
-      
-    </div>
+   
+     <ThemeContext.Provider value={{setTheme:setTheme, theme:theme}}>
+       <Layout/>
+       </ThemeContext.Provider>
   );
 }
 
