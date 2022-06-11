@@ -2,7 +2,7 @@ import {React, useState, useContext} from 'react'
 import './Header.css';
 import {Button, ButtonGroup, ToggleButton} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ThemeContext from './ThemeContext';
 
 function Header() {
 
@@ -13,12 +13,20 @@ function Header() {
     { name: 'Blue', value: '2' } 
   ];
 
-  function changeTheme(value){
-    setRadioValue(value)
-    
-  }
-  
+  const {theme,setTheme,alltheme} = useContext(ThemeContext);
 
+  function changeTheme(value){
+    console.log("Value is ",value)
+    setRadioValue(value)
+    if(value==2){
+      setTheme(alltheme.red)
+    }
+    else{
+      setTheme(alltheme.blue)
+    }
+
+  }
+    
   return (
     <div className="header">
       
@@ -46,4 +54,4 @@ function Header() {
 
 
 
-export default Header
+export default Header;

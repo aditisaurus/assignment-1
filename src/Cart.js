@@ -1,9 +1,17 @@
-import React from 'react'
+import React , {useEffect, useContext} from 'react'
 import { Row,Col , ListGroup, Button} from 'react-bootstrap';
 import './Cart.css';
+import ThemeContext from './ThemeContext';
+
 
 
 function Cart({products, onAdd}) {
+
+  const {theme} = useContext(ThemeContext);
+
+  useEffect(() => {
+  },[theme]
+  )
 
   return (
    <>
@@ -26,7 +34,7 @@ function Cart({products, onAdd}) {
         </Row>  
         <div className="checkout-button">
     <div className="d-grid gap-2">
-  <Button variant="danger" >
+  <Button variant= {theme.variant==='danger' ? 'primary' : 'danger'}>
     CheckOut
   </Button>
   </div>

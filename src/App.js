@@ -1,27 +1,28 @@
 import React , { useState, useEffect, useContext }  from 'react';
 import './App.css';
 import Layout from './Layout';
+import ThemeContext from './ThemeContext';
 
 
 const themes={
   red: {
-    variant: 'outline-danger',
+    variant: 'danger',
     name: 'Red'
   },
   blue: {
-    variant: 'outline-primary', 
+    variant: 'primary', 
     name: 'Blue'
   }
 };
-const [theme, setTheme] = useState(themes.blue);
-
-
 
 function App() {
 
+  const [theme, setTheme] = useState(themes.blue);
+  const [alltheme, setAllTheme] = useState(themes)
+
   return (
    
-     <ThemeContext.Provider value={{setTheme:setTheme, theme:theme}}>
+     <ThemeContext.Provider value={{setTheme:setTheme, theme:theme, alltheme:alltheme}}>
        <Layout/>
        </ThemeContext.Provider>
   );

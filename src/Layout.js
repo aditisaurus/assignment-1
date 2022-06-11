@@ -26,20 +26,19 @@ function Layout() {
     
         <div className="app">
 
-{/*Header*/}
-  <Header />
-
+          
+<Header />
 <div >
  <Row>
     <Col md={6}>
-    
-  <Product products={products}
+            <Product products={products}
   setProducts={setProducts}/>
-
-        
+   
     </Col>  
     <Col md={6}>  
-        <Cart />
+
+             <Cart />
+
     </Col>  
  </Row>
 </div>

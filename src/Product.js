@@ -1,10 +1,10 @@
-import {React, useState} from 'react'
+import {React, useState, useContext, useEffect} from 'react'
 import './Product.css';
 import {Button,InputGroup,FormControl, ListGroup}from 'react-bootstrap';
+import ThemeContext from './ThemeContext';
 
 
-function Products ({products,setProducts}) {
-
+function Products ({products,setProducts, setRadioValue}) {
   const handleSearch = (event) =>{
     const  name = event.target.value;
     const newFilter = products.filter((value) => {
@@ -21,6 +21,11 @@ function Products ({products,setProducts}) {
   }
 
   const {theme} = useContext(ThemeContext);
+
+  useEffect(() => {
+  },[theme]
+  )
+  
 
 
 const [cartItems, setCartItems] = useState([]);
@@ -46,7 +51,7 @@ const onAdd= (product) => {
       aria-label="Recipient's username"
       aria-describedby="basic-addon2"
     />
-     <Button variant="outline-secondary" id="button-addon2">
+     <Button variant={theme.variant==='danger' ? 'primary' : 'danger'} id="button-addon2">
       Search
     </Button></InputGroup>
 
@@ -64,10 +69,12 @@ const onAdd= (product) => {
     </div>
 
     <div className="add-to-cart-button">
-    <div className="d-grid gap-2">
-  <Button variant="primary" onClick="onAdd">
+    <div className="d-grid gap-2">{
+      theme&&
+  <Button variant = {theme.variant==='danger' ? 'primary' : 'danger'} onClick="onAdd">
     Add to Cart
   </Button>
+}
   </div>
 
 
