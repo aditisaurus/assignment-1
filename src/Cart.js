@@ -5,36 +5,37 @@ import ThemeContext from './ThemeContext';
 
 
 
-function Cart({products, onAdd}) {
+function Cart({cartItems, setCartItems}) {
 
   const {theme} = useContext(ThemeContext);
+  
+ const emptyCart = () => {
+    setCartItems([]);
+}
 
   useEffect(() => {
-  },[theme]
+    console.log(cartItems," CartItems")
+  },[theme,cartItems]
   )
 
-  return (
+  return ( 
    <>
      <Row className="cart">
        <Col>
         <h2 className="float-left">Cart</h2>
         </Col>
         <Col> 
-        <h2 className="float-end"> 2 Items </h2>
+        <h2 className="float-end">{cartItems?.length>0?cartItems?.length+" items":"Your Cart is Empty!"}</h2>
         </Col>
-        {products?.map((product) => (
-          <>
-        <ListGroup className="product-name">
-        <ListGroup.Item key={product.id}>Product</ListGroup.Item>
+               <ListGroup className="product-name">
+        {cartItems?.map((cartItem) => (
+        <ListGroup.Item id={cartItem.id}>{cartItem.name}</ListGroup.Item>
+        ))}
       </ListGroup>
-      <Button onClick={()=> onAdd(product)} className="add-item" variant="primary">+</Button>{' '}
-      <Button className="remove-item" variant="primary">-</Button>{' '}
-      </>
-      ))}
-        </Row>  
+                  </Row>  
         <div className="checkout-button">
     <div className="d-grid gap-2">
-  <Button variant= {theme.variant==='danger' ? 'primary' : 'danger'}>
+  <Button variant= {theme.variant==='danger' ? 'primary' : 'danger'} onClick={emptyCart}>
     CheckOut
   </Button>
   </div>

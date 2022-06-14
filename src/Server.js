@@ -9,16 +9,14 @@ export function makeServer({ environment = "test" } = {}) {
     },
 
     seeds(server) {
-      server.create("product", { name: "Product-1", id: 1, completed: false})
-      server.create("product", { name: "Product-2", id: 2, completed: false})
-      server.create("product", { name: "Product-3", id: 3, completed: false})
-      server.create("product", { name: "Product-4", id: 4, completed: false})
-      server.create("product", { name: "Product-5", id: 5, completed: false})
-      server.create("product", { name: "Product-6", id: 6, completed: false})
-      server.create("product", { name: "Product-7", id: 7, completed: false})
-      server.create("product", { name: "Product-8", id: 8, completed: false})
-      server.create("product", { name: "Product-9", id: 9, completed: false})
-      server.create("product", { name: "Product-10",id: 10, completed: false})
+      server.create("product", { name: "Product-101", id: 1, completed: false})
+      server.create("product", { name: "Product-102", id: 2, completed: false})
+      server.create("product", { name: "Product-103", id: 3, completed: false})
+      server.create("product", { name: "Product-104", id: 4, completed: false})
+      server.create("product", { name: "Product-105", id: 5, completed: false})
+      server.create("product", { name: "Product-106", id: 6, completed: false})
+      server.create("product", { name: "Product-107", id: 7, completed: false})
+      
 
     },
 

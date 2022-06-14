@@ -3,6 +3,14 @@
     
 }
 
+.checkbox {
+    display: flex;
+}
+
+.product-item {
+    display: flex;
+}
+
 .add-to-cart-button {
     position: fixed;
     left: 0;

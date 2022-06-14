@@ -1,6 +1,6 @@
 import {React, useState, useContext} from 'react'
 import './Header.css';
-import {Button, ButtonGroup, ToggleButton} from 'react-bootstrap';
+import {ButtonGroup, ToggleButton} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ThemeContext from './ThemeContext';
 
@@ -18,7 +18,7 @@ function Header() {
   function changeTheme(value){
     console.log("Value is ",value)
     setRadioValue(value)
-    if(value==2){
+    if(value===2){
       setTheme(alltheme.red)
     }
     else{

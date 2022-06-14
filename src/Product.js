@@ -1,10 +1,14 @@
-import {React, useState, useContext, useEffect} from 'react'
+import {React,useContext, useEffect, useState} from 'react'
 import './Product.css';
-import {Button,InputGroup,FormControl, ListGroup}from 'react-bootstrap';
+import {Button,InputGroup,FormControl,Form, ListGroup}from 'react-bootstrap';
 import ThemeContext from './ThemeContext';
 
 
-function Products ({products,setProducts, setRadioValue}) {
+ function Products ({products,setProducts, setCartItems}) {
+
+  const {theme} = useContext(ThemeContext);
+  const [checkedList, setCheckedList] = useState([]);
+
   const handleSearch = (event) =>{
     const  name = event.target.value;
     const newFilter = products.filter((value) => {
@@ -20,71 +24,72 @@ function Products ({products,setProducts, setRadioValue}) {
     
   }
 
-  const {theme} = useContext(ThemeContext);
+
+const handleChange = (id) => {
+  
+  const checked =products.filter((product) => {
+                  if(product.id === id)
+                  {
+                    return product
+                  }
+  });
+  console.log(checkedList, " Checked")
+  //const array =[checked];
+   
+        setCheckedList([...checkedList,...checked]);
+       
+    //console.log(checkedList);
+}
+
+
+const addToCart = () => {
+    setCartItems(checkedList)
+}
 
   useEffect(() => {
+    console.log("Theme" , theme)
   },[theme]
   )
   
 
 
-const [cartItems, setCartItems] = useState([]);
-const onAdd= (product) => {
-  const exist = cartItems.find((x) => x.id === product.id);
-  if (exist) {
-    setCartItems(
-      cartItems.map((x)=>
-      x.id === product.id ? { ...exist, qty: exist.qty+1 } : x)
-    );
-  }
-  else {
-    setCartItems([...cartItems, {...product, qty: 1}]);
-  }
-};
-
-
   return (
     <div className="products">
       <InputGroup className="search-input">
-    <FormControl onChange={(event) =>handleSearch(event)}
+    <FormControl 
       placeholder="Enter product name here"
       aria-label="Recipient's username"
       aria-describedby="basic-addon2"
     />
-     <Button variant={theme.variant==='danger' ? 'primary' : 'danger'} id="button-addon2">
+     <Button variant={theme.variant==='danger' ? 'primary' : 'danger'} id="button-addon2" onClick={(event) =>handleSearch(event)}>
       Search
     </Button></InputGroup>
 
     <div className="product-list">
     {products.map((product) => (
-      <>
-      <InputGroup.Checkbox className="checkbox" aria-label= {product.completed}/>
+      <div className="checkbox">
+       <Form.Check aria-label="option 1"  id={product.id} onClick={() =>handleChange(product.id)}/>
        <ListGroup>
-           <ListGroup.Item key={product.id}>{product.name}</ListGroup.Item>
+           <ListGroup.Item >{product.name}</ListGroup.Item>
         </ListGroup>
   
       
-      </>
+      </div>
 ))}
     </div>
 
     <div className="add-to-cart-button">
     <div className="d-grid gap-2">{
       theme&&
-  <Button variant = {theme.variant==='danger' ? 'primary' : 'danger'} onClick="onAdd">
+  <Button variant = {theme.variant==='danger' ? 'primary' : 'danger'} onClick={addToCart}>
     Add to Cart
   </Button>
 }
   </div>
-
-
     </div>
-    
-    
-
 
     </div>
   )
 }
 
-export default Products
+export default Products;

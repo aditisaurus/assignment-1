@@ -1,4 +1,4 @@
-import React , { useState, useEffect, useContext }  from 'react';
+import React , { useState}  from 'react';
 import './App.css';
 import Layout from './Layout';
 import ThemeContext from './ThemeContext';
@@ -19,6 +19,7 @@ function App() {
 
   const [theme, setTheme] = useState(themes.blue);
   const [alltheme, setAllTheme] = useState(themes)
+  
 
   return (
    
